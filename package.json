@@ -1,0 +1,19 @@
+{
+  "name": "news-api",
+  "version": "1.0.0",
+  "description": "Api for news site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OgurtsovArtem/NewsSearchApi.git"
+  },
+  "author": "Ogurcov.artem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OgurtsovArtem/NewsSearchApi/issues"
+  },
+  "homepage": "https://github.com/OgurtsovArtem/NewsSearchApi#readme"
+}
