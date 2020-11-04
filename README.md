@@ -2,7 +2,7 @@
 
 ## Описание
 Проект расположен на серверах Yandex.Cloud.
-Он обладает необходимыми сертификатами и доступен как по [HTTP](http://newsproject.students.nomoreparties.space/), так и по [HTTPS](https://newsproject.students.nomoreparties.space/) запросу.
+Он обладает необходимыми сертификатами и доступен как по [HTTP](http://www.newsproject.students.nomoreparties.xyz/), так и по [HTTPS](https://newsproject.students.nomoreparties.xyz/) запросу.
 Данный API создан для обработки запросов новостного сайта дипломного проекта Yandex Praktikum.
 
 ### При обращении к API вы можете использовать следующиие заросы:
