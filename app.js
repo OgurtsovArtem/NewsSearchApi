@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const rateLimit = require('express-rate-limit');
 const { errors } = require('celebrate');
+const helmet = require('helmet');
 const { auth } = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routerUsers = require('./routes/users');
@@ -31,6 +32,7 @@ const limiter = rateLimit({
 });
 
 app.use('/', routerTest);
+app.use(helmet());
 app.use(requestLogger);
 app.use(limiter);
 app.use('/', routerSingInUp);
