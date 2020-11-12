@@ -1,6 +1,7 @@
 const isURL = require('validator/lib/isURL');
 const mongoose = require('mongoose');
 require('mongoose-type-url');
+const { messages } = require('../config/massage');
 
 const articleSchema = new mongoose.Schema({
   keyword: {
@@ -26,13 +27,13 @@ const articleSchema = new mongoose.Schema({
   link: {
     type: mongoose.SchemaTypes.Url,
     required: true,
-    validate: [isURL, 'invalid URL'],
+    validate: [isURL, messages.schemas.invalidUrl],
     match: [/[-a-zA-Z0-9@:%_+.~#?&/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&/=]*)?/gi],
   },
   image: {
     type: mongoose.SchemaTypes.Url,
     required: true,
-    validate: [isURL, 'invalid URL'],
+    validate: [isURL, messages.schemas.invalidUrl],
     match: [/[-a-zA-Z0-9@:%_+.~#?&/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&/=]*)?/gi],
   },
   owner: {
