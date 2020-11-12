@@ -1,8 +1,9 @@
 const router = require('express').Router();
+const { messages } = require('../config/massage');
 
 router.get('/crash-test', () => {
   setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
+    throw new Error(messages.server.serverСrash);
   }, 0);
 });
 
