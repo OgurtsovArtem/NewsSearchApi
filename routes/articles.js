@@ -21,13 +21,10 @@ router.post('/articles', celebrate({
     text: Joi.string().required(),
     date: Joi.string().required(),
     source: Joi.string().required(),
-    link: Joi.string().required().required().regex(/^[-a-zA-Z0-9@:%_+.~#?&/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&/=]*)?$/),
-    image: Joi.string().required().required().uri(),
+    link: Joi.string().required().regex(/^[-a-zA-Z0-9@:%_+.~#?&/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&/=]*)?$/),
+    image: Joi.string().required().regex(/^[-a-zA-Z0-9@:%_+.~#?&/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&/=]*)?$/),
     owner: Joi.objectId(),
   }),
-  params: Joi.object().keys({
-    cardId: Joi.string().alphanum().hex().length(24),
-  }).unknown(true),
   headers: Joi.object().keys({
     authorization: Joi.string().required().regex(/([a-zA-z]+)?\d+([a-zA-z]+)?/),
   }).unknown(true),
@@ -35,7 +32,7 @@ router.post('/articles', celebrate({
 
 router.delete('/articles/:articleId', celebrate({
   params: Joi.object().keys({
-    cardId: Joi.string().alphanum().hex().length(24),
+    articleId: Joi.string().length(24).hex(),
   }).unknown(true),
   headers: Joi.object().keys({
     authorization: Joi.string().required().regex(/([a-zA-z]+)?\d+([a-zA-z]+)?/),
