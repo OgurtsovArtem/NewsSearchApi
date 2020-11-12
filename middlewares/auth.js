@@ -1,15 +1,13 @@
-const jwt = require('jsonwebtoken');
-// eslint-disable-next-line no-undef
-const { NODE_ENV, JWT_SECRET = 'secret-key' } = process.env;
-const handleAuthError = (res) => {
-  res
-    .status(401)
-    .send({ message: 'Необходима авторизация' });
+const { messages } = require('../config/massage');
+const { UnauthorizedError } = require('../erros');
+const { verifyToken } = require('../config/token');
+
+const handleAuthError = () => {
+  throw new UnauthorizedError(messages.auth.authError);
 };
 
 const extractBearerToken = (header) => header.replace('Bearer ', '');
 
-// eslint-disable-next-line consistent-return
 module.exports.auth = (req, res, next) => {
   const { authorization } = req.headers;
 
@@ -21,12 +19,12 @@ module.exports.auth = (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'secret-key');
+    payload = verifyToken(token);
   } catch (err) {
     return handleAuthError(res);
   }
 
   req.user = payload;
 
-  next();
+  return next();
 };
