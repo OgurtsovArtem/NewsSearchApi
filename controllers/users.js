@@ -41,7 +41,8 @@ module.exports.login = (req, res, next) => {
       const token = createToken(user);
       res.cookie('jwt', token, {
         maxAge: 3600000 * 24 * 7,
-        httpOnly: true,
+        // httpOnly: true,
+        // sameSite: true,
       });
       res.send({ token });
     })
