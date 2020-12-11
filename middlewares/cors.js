@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const cors = require('cors');
 
-// const corsOptions = {
-//   origin: ['https://ogurtsovartem.github.io', 'http://localhost:8080'],
-//   optionsSuccessStatus: 200,
-// };
+const corsOptions = {
+  origin: ['https://ogurtsovartem.github.io', 'http://localhost:8080'],
+  optionsSuccessStatus: 200,
+  credentials: true,
+};
 
-router.use(cors());
+router.use(cors(corsOptions));
 
 module.exports = router;
