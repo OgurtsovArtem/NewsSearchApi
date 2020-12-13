@@ -16,6 +16,7 @@ module.exports.getUser = (req, res, next) => {
 };
 
 module.exports.createUser = (req, res, next) => {
+  console.log(req.body)
   const { name, password, email } = req.body;
   User.init().then(() => {
     bcrypt.hash(password, 10)
@@ -41,7 +42,7 @@ module.exports.login = (req, res, next) => {
       const token = createToken(user);
       res.cookie('jwt', token, {
         maxAge: 3600000 * 24 * 7,
-        // httpOnly: true,
+        httpOnly: true,
         // sameSite: true,
       });
       res.send({ token });
