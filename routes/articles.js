@@ -8,13 +8,13 @@ const {
   deleteArticleId,
 } = require('../controllers/articles');
 
-router.get('/articles', celebrate({
+router.get('/api/articles', celebrate({
   headers: Joi.object().keys({
     authorization: Joi.string().required().regex(/([a-zA-z]+)?\d+([a-zA-z]+)?/),
   }).unknown(true),
 }), getArticles);
 
-router.post('/articles', celebrate({
+router.post('/api/articles', celebrate({
   body: Joi.object().keys({
     keyword: Joi.string().required(),
     title: Joi.string().required(),
@@ -30,7 +30,7 @@ router.post('/articles', celebrate({
   }).unknown(true),
 }), createArticle);
 
-router.delete('/articles/:articleId', celebrate({
+router.delete('/api/articles/:articleId', celebrate({
   params: Joi.object().keys({
     articleId: Joi.string().length(24).hex(),
   }).unknown(true),
