@@ -3,10 +3,10 @@ const { NotFoundError, BadRequestError, Forbidden } = require('../erros');
 const { messages } = require('../config/massage');
 
 module.exports.getArticles = (req, res, next) => {
-  Article.find({})
+  Article.find({owner: req.user._id})
     .then((article) => {
       // eslint-disable-next-line no-constant-condition
-      if (+[article] === 0) {
+      if (!article) {
         throw new NotFoundError(messages.article.noArticlesSaved);
       }
       res.send({ data: article });
@@ -35,16 +35,17 @@ module.exports.createArticle = (req, res, next) => {
     image,
     owner: ownerId,
   })
-    .then(() => {
+    .then((article) => {
       res.send({
-        keyword,
-        title,
-        text,
-        date,
-        source,
-        link,
-        image,
-      });
+        id: article._id,
+        keyword: article.keyword,
+        title: article.title,
+        text: article.text,
+        date: article.date,
+        source: article.source,
+        link: article.link,
+        image: article.image,
+      })
     })
     .catch((err) => {
       if (err.keyword === 'ValidationError') {
